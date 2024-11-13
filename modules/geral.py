@@ -1,13 +1,17 @@
 import os
+from modules.exercicio import exercicios_menu
 
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def exibir_menu_um():
+def cabecalho():
     print('''
 ==========================================
 === Sistema de Gerenciamento de Treino ===
 ==========================================''')
+
+def exibir_menu_um():
+    cabecalho()
     print("\
 == 1. Login                             ==")
     print("\
@@ -17,11 +21,8 @@ def exibir_menu_um():
 
 def menu_login():
     clear_terminal()
-    print('''
-==========================================
-=== Sistema de Gerenciamento de Treino ===''')
+    cabecalho()
     print('''\
-==========================================
 ===                Login               ===
 ==========================================''')
     print('''\
@@ -33,11 +34,8 @@ def menu_login():
     
     while tipo_usuario not in (1, 2):
         clear_terminal()
-        print('''
-==========================================
-=== Sistema de Gerenciamento de Treino ===''')
+        cabecalho()
         print('''\
-==========================================
 ===                Login               ===
 ==========================================''')
         print('''\
@@ -51,10 +49,8 @@ def menu_login():
         tipo_usuario = input("== Escolha o tipo de usuário: ")
 
     clear_terminal()
+    cabecalho()
     print('''\
-==========================================
-=== Sistema de Gerenciamento de Treino ===
-==========================================
 ===                Login               ===
 ==========================================''')    
     usuario = input("==  Digite seu nome de usuário: ")
@@ -64,9 +60,9 @@ def menu_login():
 
 def verificar_login(tipo_usuario, usuario, senha): 
     if tipo_usuario == '1':
-        arquivo = 'alunos.csv'
+        arquivo = 'data/alunos.csv'
     else:
-        arquivo = 'administrador.csv'
+        arquivo = 'data/administrador.csv'
 
     try:
         with open(arquivo, mode='r', encoding='utf8') as arq:
@@ -83,3 +79,36 @@ def verificar_login(tipo_usuario, usuario, senha):
     except Exception as e:
         print(f'Ocorreu um erro: {e}')
     return False
+
+def cabecalho_adm():
+    print('''\
+===            Administrador           ===
+==========================================''')
+
+def menu_admin():
+    cabecalho()
+    cabecalho_adm()
+    print('''\
+==  1. Exercícios                       ==
+==  2. Treinos                          ==
+==  3. Alunos                           ==
+==  4. Relatórios                       ==
+==  5. Sair                             ==''')
+
+    opcao = int(input("Escolha uma opção: "))
+    if opcao == 1:
+        exercicios_menu()
+    elif opcao == 2:
+        ...
+    elif opcao == 3:
+        ...
+    elif opcao == 4:
+        ...
+    elif opcao == 5:
+        ...
+    else:
+        ...
+
+
+
+

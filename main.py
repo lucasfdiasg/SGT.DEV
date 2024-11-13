@@ -1,6 +1,7 @@
 import json
 
-from modules.geral import exibir_menu_um, clear_terminal, menu_login, verificar_login
+from modules.geral import   exibir_menu_um, clear_terminal, menu_login,\
+                            verificar_login, menu_admin
 
 # from modules.exercicio import 
 clear_terminal()
@@ -11,7 +12,13 @@ def main():
         if opcao == '1':
             tipo_usuario, usuario, senha = menu_login()
             if verificar_login(tipo_usuario, usuario, senha):
+                clear_terminal()
                 print("Login bem-sucedido!")
+                if tipo_usuario == 2:
+                    menu_admin()
+
+
+
             else:
                 print("Nome de usuário ou senha incorretos")
         elif opcao == '2':
