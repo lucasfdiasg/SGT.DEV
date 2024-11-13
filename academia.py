@@ -1,9 +1,7 @@
-import json  # Para salvar e carregar os dados
+import json
 
-# Lista para armazenar exercícios
 exercicios = []
 
-# Opções do menu
 opcoes = {
     "1": "Cadastrar Exercício",
     "2": "Listar Exercícios",
