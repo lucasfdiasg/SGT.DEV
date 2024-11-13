@@ -86,6 +86,7 @@ def cabecalho_adm():
 ==========================================''')
 
 def menu_admin():
+    clear_terminal()
     cabecalho()
     cabecalho_adm()
     print('''\

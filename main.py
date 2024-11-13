@@ -2,8 +2,7 @@ import json
 
 from modules.geral import   exibir_menu_um, clear_terminal, menu_login,\
                             verificar_login, menu_admin
-
-# from modules.exercicio import 
+ 
 clear_terminal()
 def main():
     while True:

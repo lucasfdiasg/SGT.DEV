@@ -1,1 +1,6 @@
-[{"nome": "supino reto", "descri\u00e7\u00e3o": "Exerc\u00edcio para peitoral", "s\u00e9ries": "3", "repeti\u00e7\u00f5es": "10-12", "categoria": "for\u00e7a", "equipamento": "barra"}]
+[
+    {
+        "nome": "Supino Reto",
+        "tipo": "Peito"
+    }
+]
