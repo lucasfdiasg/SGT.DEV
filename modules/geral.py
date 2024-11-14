@@ -1,5 +1,5 @@
 import os
-from modules.exercicio import exercicios_menu
+from modules.exercicio import exercicios_menu, listar_exercicios
 
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -10,13 +10,20 @@ def cabecalho():
 === Sistema de Gerenciamento de Treino ===
 ==========================================''')
 
+def cabecalho_adm():
+    print('''\
+===            Administrador           ===
+==========================================''')
+    
+
+
 def exibir_menu_um():
     cabecalho()
-    print("\
-== 1. Login                             ==")
-    print("\
-== 2. Sair                              ==")
-    opcao = input("Escolha uma opção: ")
+    print('''\
+== 1. Login                             ==
+== 2. Sair                              ==
+==========================================''')
+    opcao = input("\n>>>> Escolha uma opção e press 'Enter': ")
     return opcao
 
 def menu_login():
@@ -24,13 +31,12 @@ def menu_login():
     cabecalho()
     print('''\
 ===                Login               ===
+==========================================
+== 1. Aluno                             ==
+== 2. Administrador                     ==
 ==========================================''')
-    print('''\
-== 1. Aluno                             ==''')
-    print('''\
-== 2. Administrador                     ==''')
     
-    tipo_usuario = int(input("== Escolha o tipo de usuário: "))
+    tipo_usuario = int(input("\n>>>> Escolha o tipo de usuário: "))
     
     while tipo_usuario not in (1, 2):
         clear_terminal()
@@ -46,15 +52,16 @@ def menu_login():
 == 1. Aluno                             ==''')
         print('''\
 == 2. Administrador                     ==''')
-        tipo_usuario = input("== Escolha o tipo de usuário: ")
+        tipo_usuario = int(input("\n>>>> Escolha o tipo de usuário: "))
 
     clear_terminal()
     cabecalho()
     print('''\
 ===                Login               ===
-==========================================''')    
-    usuario = input("==  Digite seu nome de usuário: ")
-    senha = input("==  Digite sua senha: ")
+==========================================
+''')    
+    usuario = input(">>>> Digite seu nome de usuário: ")
+    senha = input(">>>> Digite sua senha: ")
 
     return tipo_usuario, usuario, senha
 
@@ -80,11 +87,6 @@ def verificar_login(tipo_usuario, usuario, senha):
         print(f'Ocorreu um erro: {e}')
     return False
 
-def cabecalho_adm():
-    print('''\
-===            Administrador           ===
-==========================================''')
-
 def menu_admin():
     clear_terminal()
     cabecalho()
@@ -94,13 +96,15 @@ def menu_admin():
 ==  2. Treinos                          ==
 ==  3. Alunos                           ==
 ==  4. Relatórios                       ==
-==  5. Sair                             ==''')
+==  5. Administradores                  ==
+==  9. Sair                             ==''')
 
-    opcao = int(input("Escolha uma opção: "))
+    opcao = int(input("\n>>>> Escolha uma opção: "))
     if opcao == 1:
         exercicios_menu()
+        menu_admin()
     elif opcao == 2:
-        ...
+        listar_exercicios()
     elif opcao == 3:
         ...
     elif opcao == 4:
@@ -109,7 +113,3 @@ def menu_admin():
         ...
     else:
         ...
-
-
-
-

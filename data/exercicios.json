@@ -2,5 +2,9 @@
     {
         "nome": "Supino Reto",
         "tipo": "Peito"
+    },
+    {
+        "nome": "Puxada Aberta",
+        "tipo": "Costas"
     }
 ]

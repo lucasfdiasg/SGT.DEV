@@ -11,18 +11,14 @@ def main():
         if opcao == '1':
             tipo_usuario, usuario, senha = menu_login()
             if verificar_login(tipo_usuario, usuario, senha):
-                clear_terminal()
-                print("Login bem-sucedido!")
                 if tipo_usuario == 2:
                     menu_admin()
-
-
-
             else:
+                clear_terminal()
                 print("Nome de usuário ou senha incorretos")
         elif opcao == '2':
             clear_terminal()
-            print('''\
+            print('''
 ====================================
 ===                              ===
 === O Sistema está encerrando... ===
@@ -32,6 +28,7 @@ def main():
             break
         
         else:
+            clear_terminal()
             print("Opção inválida. Tente novamente.")
 
 if __name__ == "__main__":
