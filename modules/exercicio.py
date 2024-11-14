@@ -21,7 +21,7 @@ def exercicios_menu():
 ==  1. Cadastrar Exercício              ==
 ==  2. Listar Exercícios                ==
 ==  3. Buscar Exercício                 ==
-==  9. Sair                             ==
+==  9. Voltar                           ==
 ==========================================''')
     try:
         opcao = input("\n>>>   Escolha uma opção: ")
@@ -31,6 +31,8 @@ def exercicios_menu():
             listar_exercicios()
         elif opcao == '3':
             buscar_exercicio()
+        elif opcao == '9':
+            return
         else:
             clear()
             input('''
@@ -48,6 +50,8 @@ def exercicios_menu():
             exercicios_menu()
     except ValueError:
         print("Entrada inválida! Por favor, insira um número.")
+
+
 
 def cadastrar_exercicio():
     clear()
@@ -112,7 +116,7 @@ def cadastrar_exercicio():
     cadastrar_novo = input('''
 >>>>    Cadastrar novo exercício?
         1. SIM    2. NÃO
-''')
+                ''')
     while cadastrar_novo not in ('1', '2'):
         clear()
         cabecalho_exercicios()
@@ -138,7 +142,7 @@ def listar_exercicios():
                 print("Nenhum exercício cadastrado.")
             else:
                 for i, exercicio in enumerate(exercicios, 1):
-                    print(f"== {i}. Nome: {exercicio['nome']}, Tipo: {exercicio['tipo']}")
+                    print(f"== {i}. {exercicio['nome']}, Tipo: {exercicio['tipo']}")
     except FileNotFoundError:
         print('''\
 ==      Nenhum Exercício Cadastrado!    ==''')
@@ -159,7 +163,8 @@ def buscar_exercicio():
     print('''===        Busca de Exercícios         ===
 ==========================================''')
     nome_exercicio = input('''\
-==  Digite o nome do exercício:         ==
+==      Digite o nome do exercício      ==
+==     ou 'Enter' para listar todos     ==
 ==========================================
 
 >>>>    ''').strip().lower()
@@ -171,20 +176,39 @@ def buscar_exercicio():
             resultados = [(i, ex) for i, ex in enumerate(exercicios) if nome_exercicio in ex['nome'].lower()]
             
             if resultados:
-                print("\nExercícios encontrados:\n")
+                clear()
+                cabecalho_exercicios()
+                print('''\
+===         Resultado da Busca         ===
+==========================================''')
                 for idx, exercicio in resultados:
                     print(f'''\
 ID: {idx}. {exercicio['nome']}, Tipo: {exercicio['tipo']}''')
                 
                 index_selecionado = input('''
 >>> Selecione o exercício digitando seu ID
-        ou 'Enter' para voltar ao menu  ''')             
-        
+        ou 'x' para voltar ao menu  ''')             
+                if index_selecionado.lower() == 'x':
+                    exercicios_menu()
                 try:
                     index_selecionado = int(index_selecionado)
                     if index_selecionado in [idx for idx, _ in resultados]:
-                        # Exibe as opções de atualização ou remoção
-                        escolha = input("Deseja (1) Atualizar ou (2) Remover este exercício? (3 para sair): ")
+                        exercicio_selecionado = exercicios[index_selecionado]    
+                        clear()
+                        cabecalho_exercicios()
+                        print(f'''\
+===         Resultado da Busca         ===
+==========================================
+=== Exercício selecionado:              ==
+
+>>>  {exercicio_selecionado['nome']}, {exercicio_selecionado['tipo']}
+''')
+                        print("\
+==  1. Atualizar exercício              ==\n\
+==  2. Remover este exercício           ==\n\
+==  3. Sair                        ==\n\
+==========================================")
+                        escolha = input(">>> Selecione uma opção acima:")
                         if escolha == '1':
                             atualizar_exercicio(index_selecionado, exercicios)
                         elif escolha == '2':
@@ -194,9 +218,15 @@ ID: {idx}. {exercicio['nome']}, Tipo: {exercicio['tipo']}''')
                     else:
                         input("Índice inválido.")
                 except ValueError:
-                    input("Entrada inválida. Por favor, insira um número de índice.")
+                    input("\
+Entrada inválida!\n\
+Por favor, refaça a busca!")
+                    buscar_exercicio()
             else:
-                input("Nenhum exercício encontrado com o termo informado.")
+                input("Nenhum exercício encontrado\n\
+com o termo informado.\n\n\
+Refaça a busca... ")
+                buscar_exercicio()
                 
     except FileNotFoundError:
         input("Nenhum exercício cadastrado.")
@@ -208,9 +238,12 @@ ID: {idx}. {exercicio['nome']}, Tipo: {exercicio['tipo']}''')
 def atualizar_exercicio(indice, exercicios):
     clear()
     cabecalho_exercicios()
-    print("===      Atualizar Exercício       ===")
-    novo_nome = input("==  Novo nome do exercício (ou Enter para manter): \n\n>>>>    ").strip()
-    novo_tipo = input("==  Novo tipo do exercício (ou Enter para manter): \n\n>>>>    ").strip()
+    print('''\
+===         Atualizar Exercício        ===
+==========================================''')
+    
+    novo_nome = input("\n>>>>  Novo nome ou Enter para manter): \n\n>>>>    ").strip()
+    novo_tipo = input("\n>>>>  Novo tipo (ou Enter para manter): \n\n>>>>    ").strip()
 
     if novo_nome:
         exercicios[indice]['nome'] = novo_nome
@@ -225,7 +258,7 @@ def remover_exercicio(indice, exercicios):
     clear()
     cabecalho_exercicios()
     print("===      Remover Exercício         ===")
-    confirmacao = input("Tem certeza de que deseja remover este exercício? (s/n): ").strip().lower()
+    confirmacao = input(" Tem certeza de que deseja\n remover este exercício? (s/n): ").strip().lower()
     
     if confirmacao == 's':
         exercicios.pop(indice)
@@ -233,4 +266,5 @@ def remover_exercicio(indice, exercicios):
             json.dump(exercicios, arq, indent=4)
         print("Exercício removido com sucesso!")
     else:
-        print("Remoção cancelada.")
+        input("Remoção cancelada.")
+

@@ -26,5 +26,9 @@
     {
         "nome": "Tr\u00edceps Fran\u00e7\u00eas",
         "tipo": "Bra\u00e7o"
+    },
+    {
+        "nome": "Remada Fechada",
+        "tipo": "Costas"
     }
 ]

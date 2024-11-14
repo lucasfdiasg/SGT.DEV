@@ -18,6 +18,7 @@ def cabecalho_adm():
 
 
 def exibir_menu_um():
+    clear_terminal()
     cabecalho()
     print('''\
 == 1. Login                             ==
@@ -109,7 +110,7 @@ def menu_admin():
         ...
     elif opcao == '5':
         ...
-    else:
+    elif opcao == '9':
         ...
 
 
