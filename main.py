@@ -11,7 +11,7 @@ def main():
         if opcao == '1':
             tipo_usuario, usuario, senha = menu_login()
             if verificar_login(tipo_usuario, usuario, senha):
-                if tipo_usuario == 2:
+                if tipo_usuario == '3':
                     menu_admin()
             else:
                 clear_terminal()

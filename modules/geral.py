@@ -33,25 +33,22 @@ def menu_login():
 ===                Login               ===
 ==========================================
 == 1. Aluno                             ==
-== 2. Administrador                     ==
+== 2. Instrutor                         ==
+== 3. Administrador                     ==
 ==========================================''')
     
     tipo_usuario = input("\n>>>> Escolha o tipo de usuário: ")
     
-    while tipo_usuario not in ('1', '2'):
+    while tipo_usuario not in ('1', '2', '3'):
         clear_terminal()
         cabecalho()
         print('''\
 ===                Login               ===
+==========================================
+== 1. Aluno                             ==
+== 2. Instrutor                         ==
+== 3. Administrador                     ==
 ==========================================''')
-        print('''\
-===      Tipo de usuário inválido!     ===
-===          Tente Novamente!          ===
-==========================================''')
-        print('''\
-== 1. Aluno                             ==''')
-        print('''\
-== 2. Administrador                     ==''')
         tipo_usuario = input("\n>>>> Escolha o tipo de usuário: ")
 
     clear_terminal()
@@ -97,7 +94,8 @@ def menu_admin():
 ==  3. Alunos                           ==
 ==  4. Relatórios                       ==
 ==  5. Administradores                  ==
-==  9. Sair                             ==''')
+==  9. Sair                             ==
+==========================================''')
 
     opcao = input("\n>>>> Escolha uma opção: ")
     if opcao == '1':
@@ -113,3 +111,5 @@ def menu_admin():
         ...
     else:
         ...
+
+

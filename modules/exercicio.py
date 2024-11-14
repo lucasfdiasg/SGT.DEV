@@ -18,26 +18,34 @@ def exercicios_menu():
     clear()
     cabecalho_exercicios()
     print('''\
-==   1. Cadastrar Exercício             ==
-==   2. Listar Exercícios               ==
-==   3. Buscar Exercício                ==
-==   4. Atualizar Exercício             ==
-==   5. Remover Exercício               ==
-==   9. Sair                            ==''')
+==  1. Cadastrar Exercício              ==
+==  2. Listar Exercícios                ==
+==  3. Buscar Exercício                 ==
+==  9. Sair                             ==
+==========================================''')
     try:
-        opcao = input("==   Escolha uma opção: ")
+        opcao = input("\n>>>   Escolha uma opção: ")
         if opcao == '1':
             cadastrar_exercicio()
         elif opcao == '2':
             listar_exercicios()
         elif opcao == '3':
             buscar_exercicio()
-        elif opcao == '4':
-            atualizar_exercicio()
-        elif opcao == '5':
-            remover_exercicio()
         else:
-            print("Opção inválida!")
+            clear()
+            input('''
+==========================================
+=== Sistema de Gerenciamento de Treino ===
+==========================================
+===            Administrador           ===
+==========================================
+===             Exercícios             ===
+==========================================
+===          Opção Inválida            ===
+===     Pressione Enter retornar       ===
+===        ao menu anterior...         ===
+==========================================''')
+            exercicios_menu()
     except ValueError:
         print("Entrada inválida! Por favor, insira um número.")
 
@@ -115,7 +123,7 @@ def cadastrar_exercicio():
 >>>>    Cadastrar novo exercício?
         1. SIM    2. NÃO
                 ''')
-    cadastrar_exercicio() if cadastrar_novo == 1 else exercicios_menu()    
+    cadastrar_exercicio() if cadastrar_novo == '1' else exercicios_menu()    
 
 def listar_exercicios():
     clear()
@@ -146,13 +154,83 @@ def listar_exercicios():
     exercicios_menu()
 
 def buscar_exercicio():
-    # Implementação futura
-    pass
+    clear()
+    cabecalho_exercicios()
+    print('''===        Busca de Exercícios         ===
+==========================================''')
+    nome_exercicio = input('''\
+==  Digite o nome do exercício:         ==
+==========================================
 
-def atualizar_exercicio():
-    # Implementação futura
-    pass
+>>>>    ''').strip().lower()
+    
+    try:
+        with open('data/exercicios.json', 'r+', encoding='utf-8') as arq:
+            exercicios = json.load(arq)
+            
+            resultados = [(i, ex) for i, ex in enumerate(exercicios) if nome_exercicio in ex['nome'].lower()]
+            
+            if resultados:
+                print("\nExercícios encontrados:\n")
+                for idx, exercicio in resultados:
+                    print(f'''\
+ID: {idx}. {exercicio['nome']}, Tipo: {exercicio['tipo']}''')
+                
+                index_selecionado = input('''
+>>> Selecione o exercício digitando seu ID
+        ou 'Enter' para voltar ao menu  ''')             
+        
+                try:
+                    index_selecionado = int(index_selecionado)
+                    if index_selecionado in [idx for idx, _ in resultados]:
+                        # Exibe as opções de atualização ou remoção
+                        escolha = input("Deseja (1) Atualizar ou (2) Remover este exercício? (3 para sair): ")
+                        if escolha == '1':
+                            atualizar_exercicio(index_selecionado, exercicios)
+                        elif escolha == '2':
+                            remover_exercicio(index_selecionado, exercicios)
+                        else:
+                            input("Saindo da busca.")
+                    else:
+                        input("Índice inválido.")
+                except ValueError:
+                    input("Entrada inválida. Por favor, insira um número de índice.")
+            else:
+                input("Nenhum exercício encontrado com o termo informado.")
+                
+    except FileNotFoundError:
+        input("Nenhum exercício cadastrado.")
+    except json.JSONDecodeError:
+        input("Erro ao carregar dados.")
+    exercicios_menu()
+    
 
-def remover_exercicio():
-    # Implementação futura
-    pass
+def atualizar_exercicio(indice, exercicios):
+    clear()
+    cabecalho_exercicios()
+    print("===      Atualizar Exercício       ===")
+    novo_nome = input("==  Novo nome do exercício (ou Enter para manter): \n\n>>>>    ").strip()
+    novo_tipo = input("==  Novo tipo do exercício (ou Enter para manter): \n\n>>>>    ").strip()
+
+    if novo_nome:
+        exercicios[indice]['nome'] = novo_nome
+    if novo_tipo:
+        exercicios[indice]['tipo'] = novo_tipo
+
+    with open('data/exercicios.json', 'w', encoding='utf-8') as arq:
+        json.dump(exercicios, arq, indent=4)
+    print("Exercício atualizado com sucesso!")
+
+def remover_exercicio(indice, exercicios):
+    clear()
+    cabecalho_exercicios()
+    print("===      Remover Exercício         ===")
+    confirmacao = input("Tem certeza de que deseja remover este exercício? (s/n): ").strip().lower()
+    
+    if confirmacao == 's':
+        exercicios.pop(indice)
+        with open('data/exercicios.json', 'w', encoding='utf-8') as arq:
+            json.dump(exercicios, arq, indent=4)
+        print("Exercício removido com sucesso!")
+    else:
+        print("Remoção cancelada.")

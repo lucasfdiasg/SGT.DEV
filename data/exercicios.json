@@ -1,9 +1,5 @@
 [
     {
-        "nome": "Supino Reto",
-        "tipo": "Peito"
-    },
-    {
         "nome": "Puxada Aberta",
         "tipo": "Costas"
     },
@@ -14,5 +10,21 @@
     {
         "nome": "Esteira",
         "tipo": "cardio"
+    },
+    {
+        "nome": "Supino Reto",
+        "tipo": "Peito"
+    },
+    {
+        "nome": "Agachamento Sum\u00f4",
+        "tipo": "Perna"
+    },
+    {
+        "nome": "Rosca direta",
+        "tipo": "Biceps"
+    },
+    {
+        "nome": "Tr\u00edceps Fran\u00e7\u00eas",
+        "tipo": "Bra\u00e7o"
     }
 ]
