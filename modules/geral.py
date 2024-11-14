@@ -36,9 +36,9 @@ def menu_login():
 == 2. Administrador                     ==
 ==========================================''')
     
-    tipo_usuario = int(input("\n>>>> Escolha o tipo de usuário: "))
+    tipo_usuario = input("\n>>>> Escolha o tipo de usuário: ")
     
-    while tipo_usuario not in (1, 2):
+    while tipo_usuario not in ('1', '2'):
         clear_terminal()
         cabecalho()
         print('''\
@@ -52,7 +52,7 @@ def menu_login():
 == 1. Aluno                             ==''')
         print('''\
 == 2. Administrador                     ==''')
-        tipo_usuario = int(input("\n>>>> Escolha o tipo de usuário: "))
+        tipo_usuario = input("\n>>>> Escolha o tipo de usuário: ")
 
     clear_terminal()
     cabecalho()
@@ -99,17 +99,17 @@ def menu_admin():
 ==  5. Administradores                  ==
 ==  9. Sair                             ==''')
 
-    opcao = int(input("\n>>>> Escolha uma opção: "))
-    if opcao == 1:
+    opcao = input("\n>>>> Escolha uma opção: ")
+    if opcao == '1':
         exercicios_menu()
         menu_admin()
-    elif opcao == 2:
+    elif opcao == '2':
         listar_exercicios()
-    elif opcao == 3:
+    elif opcao == '3':
         ...
-    elif opcao == 4:
+    elif opcao == '4':
         ...
-    elif opcao == 5:
+    elif opcao == '5':
         ...
     else:
         ...

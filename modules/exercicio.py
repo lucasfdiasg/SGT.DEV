@@ -1,5 +1,6 @@
 import os
 import json
+
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -24,16 +25,16 @@ def exercicios_menu():
 ==   5. Remover Exercício               ==
 ==   9. Sair                            ==''')
     try:
-        opcao = int(input("==   Escolha uma opção: "))
-        if opcao == 1:
+        opcao = input("==   Escolha uma opção: ")
+        if opcao == '1':
             cadastrar_exercicio()
-        elif opcao == 2:
+        elif opcao == '2':
             listar_exercicios()
-        elif opcao == 3:
+        elif opcao == '3':
             buscar_exercicio()
-        elif opcao == 4:
+        elif opcao == '4':
             atualizar_exercicio()
-        elif opcao == 5:
+        elif opcao == '5':
             remover_exercicio()
         else:
             print("Opção inválida!")
@@ -51,6 +52,7 @@ def cadastrar_exercicio():
 
 
     nome_exercicio_normalizado = nome_exercicio.lower()
+
     exercicio = {
         "nome": nome_exercicio,
         "tipo": tipo_exercicio
@@ -77,8 +79,7 @@ def cadastrar_exercicio():
                     input('''\
 ===     Pressione Enter retornar       ===
 ===        ao menu anterior...         ===
-==========================================''')
-                    
+==========================================''')                    
                     return
 
                 exercicios.append(exercicio)
@@ -99,20 +100,21 @@ def cadastrar_exercicio():
 ===  Exercício cadastrado com sucesso! ===
 ===                                    ===
 ==========================================''')
-    cadastrar_novo = int(input('''
+
+    cadastrar_novo = input('''
 >>>>    Cadastrar novo exercício?
         1. SIM    2. NÃO
-'''))
-    while cadastrar_novo not in (1, 2):
+''')
+    while cadastrar_novo not in ('1', '2'):
         clear()
         cabecalho_exercicios()
         print('''\
 ===           OPÇÃO INVÁLIDA           ===
 ==========================================''')
-        cadastrar_novo = int(input('''
+        cadastrar_novo = input('''
 >>>>    Cadastrar novo exercício?
         1. SIM    2. NÃO
-                '''))
+                ''')
     cadastrar_exercicio() if cadastrar_novo == 1 else exercicios_menu()    
 
 def listar_exercicios():
