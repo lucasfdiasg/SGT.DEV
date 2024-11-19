@@ -206,7 +206,7 @@ ID: {idx}. {exercicio['nome']}, Tipo: {exercicio['tipo']}''')
                         print("\
 ==  1. Atualizar exercício              ==\n\
 ==  2. Remover este exercício           ==\n\
-==  3. Sair                        ==\n\
+==  3. Sair                             ==\n\
 ==========================================")
                         escolha = input(">>> Selecione uma opção acima:")
                         if escolha == '1':
@@ -214,18 +214,19 @@ ID: {idx}. {exercicio['nome']}, Tipo: {exercicio['tipo']}''')
                         elif escolha == '2':
                             remover_exercicio(index_selecionado, exercicios)
                         else:
-                            input("Saindo da busca.")
+                            input("Saindo da busca...")
                     else:
-                        input("Índice inválido.")
+                        input("Índice inválido. Pressione Enter para tentar novamente.")
+                        buscar_exercicio()
                 except ValueError:
                     input("\
 Entrada inválida!\n\
 Por favor, refaça a busca!")
                     buscar_exercicio()
             else:
-                input("Nenhum exercício encontrado\n\
-com o termo informado.\n\n\
-Refaça a busca... ")
+                input("    Nenhum exercício encontrado\n\
+    com o termo informado.\n\n\
+    >>> Refaça a busca... ")
                 buscar_exercicio()
                 
     except FileNotFoundError:
@@ -252,19 +253,30 @@ def atualizar_exercicio(indice, exercicios):
 
     with open('data/exercicios.json', 'w', encoding='utf-8') as arq:
         json.dump(exercicios, arq, indent=4)
-    print("Exercício atualizado com sucesso!")
+    print("        Exercício atualizado com sucesso!\n")
+    input(">>> Pressione Enter para retornar ao menu...")
+    exercicios_menu()
 
 def remover_exercicio(indice, exercicios):
     clear()
     cabecalho_exercicios()
-    print("===      Remover Exercício         ===")
-    confirmacao = input(" Tem certeza de que deseja\n remover este exercício? (s/n): ").strip().lower()
+    print(f"\
+===        Remover Exercício           ===\n\
+==========================================\n\
+===   Tem certeza que deseja remover   ===\n\
+===     o exercício selecionado???     ===\n\
+==========================================\n\
+===          [1] Sim     [2] Não       ===\n\
+==========================================")
+    confirmacao = input(">>>>   ").strip().lower()
     
-    if confirmacao == 's':
+    if confirmacao == '1':
         exercicios.pop(indice)
         with open('data/exercicios.json', 'w', encoding='utf-8') as arq:
             json.dump(exercicios, arq, indent=4)
-        print("Exercício removido com sucesso!")
+        input("\n\
+>>> Exercício removido com sucesso!\n\
+    Pressione Enter para continuar...")
     else:
-        input("Remoção cancelada.")
-
+        input("    Remoção cancelada.\n\
+    Pressione Enter para continuar...")

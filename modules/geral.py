@@ -1,5 +1,6 @@
 import os
 from modules.exercicio import exercicios_menu, listar_exercicios
+from modules.alunos import menu_admin_alunos
 
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -59,7 +60,7 @@ def menu_login():
 ==========================================
 ''')    
     usuario = input(">>>> Digite seu nome de usuário: ")
-    senha = input(">>>> Digite sua senha: ")
+    senha = input("\n>>>> Digite sua senha: ")
 
     return tipo_usuario, usuario, senha
 
@@ -103,14 +104,13 @@ def menu_admin():
         exercicios_menu()
         menu_admin()
     elif opcao == '2':
-        listar_exercicios()
+        input("Funcionalidade em desenvolvimento. Pressione Enter para voltar.")
+        menu_admin()
     elif opcao == '3':
-        ...
-    elif opcao == '4':
-        ...
-    elif opcao == '5':
-        ...
-    elif opcao == '9':
-        ...
+        menu_admin_alunos()
+        menu_admin()
+    elif opcao in ('4', '5'):
+        input("Funcionalidade em desenvolvimento. Pressione Enter para voltar.")
+        menu_admin()
 
 

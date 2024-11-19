@@ -1,0 +1,75 @@
+[
+    {
+        "matricula": 1000,
+        "nome": "Lucas Freitas Dias Gon\u00e7alves",
+        "ativo": "Ativo",
+        "idade": 28,
+        "sexo": "masculino",
+        "peso": 87.5,
+        "altura": 1.8,
+        "objetivo": "hipertrofia"
+    },
+    {
+        "matricula": 1001,
+        "nome": "Jo\u00e3o das Couves",
+        "idade": 35,
+        "sexo": "feminino",
+        "peso": 95.12,
+        "altura": 155.0,
+        "objetivo": "Emagrecimento"
+    },
+    {
+        "matricula": 1002,
+        "nome": "Efrain Lima Marv\u00e3o",
+        "idade": 19,
+        "sexo": "masculino",
+        "peso": 76.5,
+        "altura": 1.79,
+        "objetivo": "Hipertrofia"
+    },
+    {
+        "matricula": 1003,
+        "nome": "Eduardo Mendes",
+        "idade": 35,
+        "sexo": "feminino",
+        "peso": 85.0,
+        "altura": 182.0,
+        "objetivo": "For\u00e7a"
+    },
+    {
+        "matricula": 1004,
+        "nome": "Manuel de N\u00f3brega",
+        "idade": 85,
+        "sexo": "feminino",
+        "peso": 85.6,
+        "altura": 185.0,
+        "objetivo": "Emagrecimento"
+    },
+    {
+        "matricula": 1005,
+        "nome": "Sabrina Dias Gon\u00e7alves",
+        "idade": 30,
+        "sexo": "feminino",
+        "peso": 95.0,
+        "altura": 1.72,
+        "objetivo": "Emagrecimento"
+    },
+    {
+        "matricula": 1006,
+        "nome": "Joana Prado",
+        "idade": 28,
+        "sexo": "feminino",
+        "peso": 68.0,
+        "altura": 1.72,
+        "objetivo": "Hipertrofia"
+    },
+    {
+        "matricula": 1007,
+        "nome": "Nome extremamente grande pra poder testar o apppppp",
+        "idade": 12,
+        "sexo": "masculino",
+        "peso": 55.0,
+        "altura": 1.23,
+        "objetivo": "Emagrecimento"
+    }
+]

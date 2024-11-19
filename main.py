@@ -1,7 +1,7 @@
 import json
 
 from modules.geral import   exibir_menu_um, clear_terminal, menu_login,\
-                            verificar_login, menu_admin
+                            verificar_login, menu_admin, menu_admin_alunos
  
 clear_terminal()
 def main():

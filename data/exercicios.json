@@ -20,15 +20,11 @@
         "tipo": "Perna"
     },
     {
-        "nome": "Rosca direta",
-        "tipo": "Biceps"
-    },
-    {
         "nome": "Tr\u00edceps Fran\u00e7\u00eas",
         "tipo": "Bra\u00e7o"
     },
     {
-        "nome": "Remada Fechada",
-        "tipo": "Costas"
+        "nome": "Tr\u00edceps no pulley",
+        "tipo": "Bra\u00e7o"
     }
 ]
