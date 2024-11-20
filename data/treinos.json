@@ -1,0 +1,42 @@
+[
+    {
+        "nome": "Treino de Costas",
+        "exercicios": [
+            {
+                "nome": "Puxada Alta",
+                "series": 3,
+                "repeticoes": "12-15"
+            },
+            {
+                "nome": "Remada Baixa",
+                "series": 3,
+                "repeticoes": "12-15"
+            },
+            {
+                "nome": "Crucifixo Inverso",
+                "series": 4,
+                "repeticoes": "10"
+            }
+        ]
+    },
+    {
+        "nome": "Treino de Peito",
+        "exercicios": [
+            {
+                "nome": "Supino Reto",
+                "series": 3,
+                "repeticoes": "12-15"
+            },
+            {
+                "nome": "Supino Inclinado",
+                "series": 3,
+                "repeticoes": "12-15"
+            },
+            {
+                "nome": "Crucifixo",
+                "series": 4,
+                "repeticoes": "10"
+            }
+        ]
+    }
+]

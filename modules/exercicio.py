@@ -103,7 +103,7 @@ def cadastrar_exercicio():
                 json.dump([exercicio], arq, indent=4)
 
     except Exception as e:
-        print(f"Erro ao cadastrar exercício: {e}")
+        input(f"Erro ao cadastrar exercício: {e}")
 
     clear()
     cabecalho_exercicios()
@@ -280,3 +280,4 @@ def remover_exercicio(indice, exercicios):
     else:
         input("    Remoção cancelada.\n\
     Pressione Enter para continuar...")
+

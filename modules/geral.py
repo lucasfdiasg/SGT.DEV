@@ -1,6 +1,7 @@
 import os
 from modules.exercicio import exercicios_menu, listar_exercicios
 from modules.alunos import menu_admin_alunos
+from modules.treino import menu_admin_treino
 
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -104,7 +105,7 @@ def menu_admin():
         exercicios_menu()
         menu_admin()
     elif opcao == '2':
-        input("Funcionalidade em desenvolvimento. Pressione Enter para voltar.")
+        menu_admin_treino()
         menu_admin()
     elif opcao == '3':
         menu_admin_alunos()

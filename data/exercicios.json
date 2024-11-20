@@ -4,10 +4,6 @@
         "tipo": "Costas"
     },
     {
-        "nome": "Agachamento",
-        "tipo": "asdfas"
-    },
-    {
         "nome": "Esteira",
         "tipo": "cardio"
     },
@@ -26,5 +22,9 @@
     {
         "nome": "Tr\u00edceps no pulley",
         "tipo": "Bra\u00e7o"
+    },
+    {
+        "nome": "exercicio",
+        "tipo": "tipo de exercicio"
     }
 ]

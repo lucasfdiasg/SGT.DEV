@@ -22,9 +22,9 @@
         "matricula": 1002,
         "nome": "Efrain Lima Marv\u00e3o",
         "idade": 19,
-        "sexo": "masculino",
+        "sexo": "feminino",
         "peso": 76.5,
-        "altura": 1.79,
+        "altura": 0.0179,
         "objetivo": "Hipertrofia"
     },
     {
@@ -65,11 +65,29 @@
     },
     {
         "matricula": 1007,
-        "nome": "Nome extremamente grande pra poder testar o apppppp",
-        "idade": 12,
+        "nome": "Nome normal",
+        "idade": 18,
         "sexo": "masculino",
-        "peso": 55.0,
-        "altura": 1.23,
+        "peso": 60.0,
+        "altura": 1.66,
+        "objetivo": "For\u00e7a"
+    },
+    {
+        "matricula": 1008,
+        "nome": "Matheus",
+        "idade": 25,
+        "sexo": "masculino",
+        "peso": 56.12,
+        "altura": 1.99,
         "objetivo": "Emagrecimento"
+    },
+    {
+        "matricula": 1009,
+        "nome": "df",
+        "idade": 12,
+        "sexo": "feminino",
+        "peso": 565.0,
+        "altura": 32.32,
+        "objetivo": "For\u00e7a"
     }
 ]

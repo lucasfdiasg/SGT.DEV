@@ -75,7 +75,7 @@ def cadastrar_alunos():
         cabecalho_admin_alunos()
         altura_cm = float(input("==  Digite a altura do aluno (cm):      ==\n\
 ==========================================\n\n>>>>    ").strip())
-        altura = altura_cm / 100  # Convertendo para metros
+        altura = altura_cm / 100
 
         clear()
         cabecalho_admin_alunos()
@@ -242,7 +242,7 @@ def buscar_alunos():
 ===    O que deseja fazer?             ===
 ===  [1] Exibir informações            ===
 ===  [2] Atualizar informações         ===
-===  [3] Voltar                        ===
+===  [9] Voltar                        ===
 ==========================================''')
             opcao = input("\n>>> Escolha uma opção: ").strip()
 
@@ -265,7 +265,7 @@ Objetivo: {aluno_selecionado['objetivo']}
                 atualizar_informacoes_aluno(alunos, aluno_selecionado)
                 break
 
-            elif opcao == '3':
+            elif opcao == '9':
                 break
 
             else:
@@ -277,8 +277,13 @@ Objetivo: {aluno_selecionado['objetivo']}
                 input("\n>>> Pressione Enter para tentar novamente...")
 
     except Exception as e:
-        print(f"Erro ao buscar aluno: {e}")
-        input("\n>>> Pressione Enter para voltar ao menu...")
+            clear()
+            cabecalho_admin_alunos()
+            print('''\
+===     Matrícula não encontrada!      ===
+==========================================''')
+            input("\n>>> Pressione Enter para voltar ao menu...")
+            buscar_alunos()
     menu_admin_alunos()
 
 def atualizar_informacoes_aluno(alunos, aluno):
@@ -288,11 +293,9 @@ def atualizar_informacoes_aluno(alunos, aluno):
 ==========================================''')
 
     try:
-        # Atualizar informações
         aluno['nome'] = input(f"Novo nome [{aluno['nome']}]: ").strip() or aluno['nome']
         aluno['idade'] = int(input(f"Nova idade [{aluno['idade']}]: ").strip() or aluno['idade'])
         
-        # Atualizar sexo com seleção
         clear()
         cabecalho_admin_alunos()
         print(f"\n>>> Atualizar sexo do aluno:")
@@ -315,9 +318,14 @@ def atualizar_informacoes_aluno(alunos, aluno):
         aluno['sexo'] = "masculino" if sexo_opcao == '1' else "feminino"
 
         aluno['peso'] = float(input(f"Novo peso [{aluno['peso']} kg]: ").strip() or aluno['peso'])
-        aluno['altura'] = float(input(f"Nova altura [{aluno['altura']} m]: ").strip() or aluno['altura'])
-        
-        # Atualizar objetivo com seleção
+
+# altura_cm = float(input("==  Digite a altura do aluno (cm):      ==\n\
+# ==========================================\n\n>>>>    ").strip())
+#         altura = altura_cm / 100
+
+        aluno_cm = float(input(f"Nova altura [{int(aluno['altura'] * 100)} cm]: ").strip() or aluno['altura'])
+        aluno['altura'] = aluno_cm / 100
+
         clear()
         cabecalho_admin_alunos()
         print(f"\n>>> Atualizar objetivo do aluno:")
@@ -341,7 +349,6 @@ def atualizar_informacoes_aluno(alunos, aluno):
 >>> Escolha o novo objetivo (1/2/3): ''').strip()
         aluno['objetivo'] = "Força" if objetivo_opcao == '1' else "Hipertrofia" if objetivo_opcao == '2' else "Emagrecimento"
 
-        # Salvar alterações no arquivo
         with open('data/alunos.json', mode='w', encoding='utf-8') as arq:
             json.dump(alunos, arq, indent=4)
 
@@ -394,3 +401,5 @@ def menu_admin_alunos():
             menu_admin_alunos()
     except ValueError:
         input("Entrada inválida! Por favor, insira um número.")
+
+        
