@@ -84,26 +84,28 @@ def cabeçalho_criar_modelo_treino():
     print('''\
 ===        Novo Modelo de Treino       ===
 ==========================================''')
-    
+
 def criar_modelo_treino():
     cabeçalho_criar_modelo_treino()
-    nome_do_treino = input(">>> Digite o nome do novo treino: ").strip()
+    nome_do_treino = input("\
+==     Digite o nome do novo treino:    ==\n\
+==========================================\n\
+\n>>>   ").strip()
 
     if not nome_do_treino:
-        input("Nome do treino não pode estar vazio! Pressione Enter para tentar novamente.")
-        return criar_modelo_treino() 
+        input("Nome do treino não pode estar vazio!\n\
+Pressione Enter para tentar novamente...")
+        return criar_modelo_treino()
 
     nome_do_treino_normalizado = nome_do_treino.lower()
 
     try:
-        
         if os.path.exists('data/treinos.json'):
             with open('data/treinos.json', 'r+', encoding='utf8') as arq:
                 try:
                     treinos = json.load(arq)
                 except json.JSONDecodeError:
                     treinos = []
-
         else:
             treinos = []
 
@@ -119,21 +121,146 @@ Pressione Enter para tentar novamente...''')
             return criar_modelo_treino()
 
         novo_treino = {"nome": nome_do_treino, "exercicios": []}
+        sair = False
 
+        while not sair:
+            cabeçalho_criar_modelo_treino()
+            print(f"Cadastrando Treino: {nome_do_treino}")
+            print("=" * 42)
+            
+            # Exibir os exercícios adicionados no formato ficha
+            if novo_treino["exercicios"]:
+                print("Exercícios adicionados:")
+                for idx, ex in enumerate(novo_treino["exercicios"]):
+                    print(f"[{idx + 1}] {ex['nome']} | Séries: {ex['series']} | Rep: {ex['repeticoes']}")
+                print("=" * 42)
+            else:
+                print("   Nenhum exercício adicionado até agora.")
+                print("=" * 42)
+
+            escolha = input('''\
+== Adicionar Exercício                  ==
+==                                      ==
+== [1] Buscar por Nome                  ==
+== [2] Exercício Personalizado          ==
+== [9] Finalizar e Salvar Treino        ==
+==========================================
+>>>  ''').strip()
+
+            if escolha == '1':
+                adicionar_exercicio_por_busca(novo_treino)
+            elif escolha == '2':
+                adicionar_exercicio_personalizado(novo_treino)
+            elif escolha == '9':
+                sair = True
+            else:
+                input("Escolha inválida! Pressione Enter para tentar novamente.")
+
+        # Salvar treino no arquivo
         treinos.append(novo_treino)
         with open('data/treinos.json', 'w', encoding='utf8') as arq:
             json.dump(treinos, arq, indent=4)
 
-        input(f"Treino '{nome_do_treino}' cadastrado com sucesso!\n\
-Pressione Enter para continuar.")
+        input(f"Treino '{nome_do_treino}' salvo com sucesso!\n\nPressione Enter para continuar....")
+
     except Exception as e:
         input(f"Erro ao cadastrar treino: {e}\nPressione Enter para continuar.")
 
+
+def adicionar_exercicio_por_busca(treino):
+    try:
+        with open('data/exercicios.json', 'r', encoding='utf8') as arq:
+            exercicios = json.load(arq)
+
+        nome_exercicio = input("\
+Digite o nome do exercício para buscar:\n\
+>>>   ").strip().lower()
+        resultados = [ex for ex in exercicios if nome_exercicio in ex['nome'].lower()]
+
+        if resultados:
+            print("\n\
+==========================================\n\
+===        Resultados da busca         ===\n")
+            for i, ex in enumerate(resultados):
+                print(f"[{i}] Nome: {ex['nome']}, Tipo: {ex['tipo']}")
+
+            indice = input("\nSelecione o índice do exercício\n\
+desejado ou 'x' para cancelar:\n>>>   ").strip()
+            if indice.lower() == 'x':
+                return
+
+            try:
+                indice = int(indice)
+                if 0 <= indice < len(resultados):
+                    exercicio = resultados[indice]
+                    series = int(input(f"\n\
+Digite o número de séries para:\n\
+'{exercicio['nome']}' >>>    ").strip())
+                    repeticoes = input(f"\n\
+Digite as repetições para:\n\
+'{exercicio['nome']}' >>>   ").strip()
+                    exercicio_completo = {
+                        "nome": exercicio['nome'],
+                        "tipo": exercicio['tipo'],
+                        "series": series,
+                        "repeticoes": repeticoes,
+                    }
+                    treino["exercicios"].append(exercicio_completo)
+                    input(f"\n\
+==========================================\n\
+===   Exercício '{exercicio['nome']}'\n\
+===       adicionado com sucesso!      ===\n\
+==========================================\n\
+Pressione Enter para continuar....")
+                else:
+                    input("Índice inválido!\n\nPressione Enter para tentar novamente.")
+            except ValueError:
+                input("Entrada inválida!\n\nPressione Enter para tentar novamente.")
+        else:
+            input("Nenhum exercício encontrado!\n\nPressione Enter para tentar novamente.")
+    except FileNotFoundError:
+        input("Arquivo de exercícios não encontrado!\n\nPressione Enter para continuar.")
+    except json.JSONDecodeError:
+        input("Erro ao ler o arquivo de exercícios!\n\nPressione Enter para continuar.")
+
+def adicionar_exercicio_personalizado(novo_treino):
     cabeçalho_criar_modelo_treino()
-    print(f'''\
- Cadastrando Treino: {nome_do_treino}''')
-    input("")
+    print('''\
+===  Adicionar Exercício Personalizado ===
+==========================================''')
 
+    try:
+        nome = input("Digite o nome do exercício:\n>>>   ").strip()
+        if not nome:
+            input("O nome do exercício não pode estar vazio! Pressione Enter para tentar novamente.")
+            return adicionar_exercicio_personalizado(novo_treino)
 
-def treino_de_alunos():
-    pass
+        tipo = input("Digite o tipo do exercício:\n>>>   ").strip()
+        if not tipo:
+            input("O tipo do exercício não pode estar vazio! Pressione Enter para tentar novamente.")
+            return adicionar_exercicio_personalizado(novo_treino)
+
+        try:
+            series = int(input("Digite o número de séries:\n>>>   ").strip())
+        except ValueError:
+            input("Número de séries inválido! Pressione Enter para tentar novamente.")
+            return adicionar_exercicio_personalizado(novo_treino)
+
+        repeticoes = input("Digite o número de repetições:\n>>>   ").strip()
+        if not repeticoes:
+            input("O número de repetições não pode estar vazio! Pressione Enter para tentar novamente.")
+            return adicionar_exercicio_personalizado(novo_treino)
+
+        exercicio_personalizado = {
+            "nome": nome,
+            "tipo": tipo,
+            "series": series,
+            "repeticoes": repeticoes,
+        }
+
+        novo_treino["exercicios"].append(exercicio_personalizado)
+
+        input(f"\nExercício '{nome}' adicionado com sucesso!\nPressione Enter para continuar...")
+
+    except Exception as e:
+        input(f"Erro ao adicionar exercício personalizado: {e}\nPressione Enter para continuar.")

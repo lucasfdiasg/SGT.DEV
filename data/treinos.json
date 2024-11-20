@@ -1,41 +1,41 @@
 [
     {
-        "nome": "Treino de Costas",
+        "nome": "Primeiro",
         "exercicios": [
             {
-                "nome": "Puxada Alta",
-                "series": 3,
-                "repeticoes": "12-15"
+                "nome": "Puxada Aberta",
+                "tipo": "Costas",
+                "series": 5,
+                "repeticoes": "12"
             },
             {
-                "nome": "Remada Baixa",
-                "series": 3,
-                "repeticoes": "12-15"
+                "nome": "Agachamento Sum\u00f4",
+                "tipo": "Perna",
+                "series": 5,
+                "repeticoes": "12"
             },
             {
-                "nome": "Crucifixo Inverso",
+                "nome": "Tr\u00edceps Fran\u00e7\u00eas",
+                "tipo": "Bra\u00e7o",
                 "series": 4,
-                "repeticoes": "10"
+                "repeticoes": "15"
             }
         ]
     },
     {
-        "nome": "Treino de Peito",
+        "nome": "Segundo",
         "exercicios": [
             {
-                "nome": "Supino Reto",
-                "series": 3,
-                "repeticoes": "12-15"
+                "nome": "Prancha",
+                "tipo": "Abdominal",
+                "series": 5,
+                "repeticoes": "12"
             },
             {
-                "nome": "Supino Inclinado",
-                "series": 3,
-                "repeticoes": "12-15"
-            },
-            {
-                "nome": "Crucifixo",
-                "series": 4,
-                "repeticoes": "10"
+                "nome": "Tr\u00edceps Fran\u00e7\u00eas",
+                "tipo": "Bra\u00e7o",
+                "series": 12,
+                "repeticoes": "15"
             }
         ]
     }
