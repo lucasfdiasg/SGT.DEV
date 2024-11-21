@@ -24,35 +24,19 @@
         "tipo": "Bra\u00e7o"
     },
     {
-        "nome": "exercicio",
-        "tipo": "tipo de exercicio"
-    },
-    {
-        "nome": "N\u00e3o sei",
-        "tipo": "Por Nome"
-    },
-    {
         "nome": "Prancha",
         "tipo": "Core"
     },
     {
-        "nome": "9",
-        "tipo": "9"
+        "nome": "Triceps Franc\u00eas",
+        "tipo": "Tr\u00edceps"
     },
     {
-        "nome": "ss",
-        "tipo": "ss"
+        "nome": "Flex\u00e3o de Bra\u00e7o",
+        "tipo": "Calistenia/Peito"
     },
     {
-        "nome": "Nome",
-        "tipo": "as,"
-    },
-    {
-        "nome": "Nome de Exerc",
-        "tipo": ""
-    },
-    {
-        "nome": "",
-        "tipo": "a"
+        "nome": "Banco Soleo",
+        "tipo": "Panturrilha"
     }
 ]

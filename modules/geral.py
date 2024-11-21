@@ -150,7 +150,7 @@ def exercicios_menu():
             elif opcao == '3':
                 buscar_exercicio()
             elif opcao == '9':
-                return 
+                break 
             else:
                 clear()
                 input('''
@@ -248,7 +248,10 @@ def cadastrar_exercicio():
 >>>>    Cadastrar novo exercício?
         1. SIM    2. NÃO
                 ''')
-    cadastrar_exercicio() if cadastrar_novo == '1' else exercicios_menu()    
+    if cadastrar_novo == '1':
+        cadastrar_exercicio()
+    else:
+        return
 
 def listar_exercicios():
     clear()
@@ -276,7 +279,7 @@ def listar_exercicios():
 ==         ao menu anterior...          ==
 ==========================================''')
     clear()
-    exercicios_menu()
+    return
 
 def buscar_exercicio():
     clear()
@@ -311,7 +314,7 @@ ID: {idx}. {exercicio['nome']}, Tipo: {exercicio['tipo']}''')
 >>> Selecione o exercício digitando seu ID
         ou 'x' para voltar ao menu  ''')             
                 if index_selecionado.lower() == 'x':
-                    exercicios_menu()
+                    return
                 try:
                     index_selecionado = int(index_selecionado)
                     if index_selecionado in [idx for idx, _ in resultados]:
@@ -356,7 +359,7 @@ Por favor, refaça a busca!")
         input("Nenhum exercício cadastrado.")
     except json.JSONDecodeError:
         input("Erro ao carregar dados.")
-    exercicios_menu()
+    return
     
 
 def atualizar_exercicio(indice, exercicios):
@@ -379,7 +382,7 @@ def atualizar_exercicio(indice, exercicios):
     print("\n\
         Exercício atualizado com sucesso!\n")
     input(">>> Pressione Enter para retornar ao menu...")
-    exercicios_menu()
+    return
 
 def remover_exercicio(indice, exercicios):
     clear()
