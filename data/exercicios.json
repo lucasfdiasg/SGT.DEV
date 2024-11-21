@@ -38,5 +38,13 @@
     {
         "nome": "Banco Soleo",
         "tipo": "Panturrilha"
+    },
+    {
+        "nome": "Rosca Scott",
+        "tipo": "B\u00edceps"
+    },
+    {
+        "nome": "PullDown",
+        "tipo": "Costas"
     }
 ]

@@ -107,8 +107,7 @@ def listar_exercicios_page():
 @app.route('/api/listar-exercicios', methods=['GET'])
 def listar_exercicios():
     try:
-        exercicios_path = '
-        data/exercicios.json'
+        exercicios_path = 'SGT.DEV/data/exercicios.json'
         
         if os.path.exists(exercicios_path):
             with open(exercicios_path, 'r', encoding='utf-8') as arq:
@@ -118,6 +117,7 @@ def listar_exercicios():
             return jsonify({'success': False, 'message': 'Nenhum exercício cadastrado.'})
     except Exception as e:
         return jsonify({'success': False, 'message': f'Erro ao carregar os exercícios: {str(e)}'})
+
 
 
 if __name__ == '__main__':

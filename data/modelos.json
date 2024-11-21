@@ -1,1 +1,42 @@
-[]
+[
+    {
+        "nome": "Peito",
+        "exercicios": [
+            {
+                "nome": "Supino Reto",
+                "tipo": "Peito",
+                "series": 3,
+                "repeticoes": "10-12"
+            },
+            {
+                "nome": "Supino com Halt.",
+                "tipo": "Peito",
+                "series": 3,
+                "repeticoes": "10-15"
+            }
+        ]
+    },
+    {
+        "nome": "Costas",
+        "exercicios": [
+            {
+                "nome": "Puxada Aberta",
+                "tipo": "Costas",
+                "series": 3,
+                "repeticoes": "10-12"
+            },
+            {
+                "nome": "Serrote",
+                "tipo": "Costas",
+                "series": 3,
+                "repeticoes": "6-8"
+            },
+            {
+                "nome": "PullDown",
+                "tipo": "Costas",
+                "series": 3,
+                "repeticoes": "10-12"
+            }
+        ]
+    }
+]
