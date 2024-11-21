@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Cadastrar Exercício</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Cadastrar Novo Exercício</h1>
+        </header>
+        <main>
+            <div id="form-container">
+                <!-- Formulário de Cadastro -->
+                <form id="cadastroExercicioForm">
+                    <label for="nome">Nome do Exercício:</label>
+                    <input type="text" id="nome" placeholder="Digite o nome do exercício" required>
+
+                    <label for="tipo">Tipo de Exercício:</label>
+                    <select id="tipo" required>
+                        <option value="" disabled selected>Selecione o tipo</option>
+                        <option value="Peito">Peito</option>
+                        <option value="Ombro">Ombro</option>
+                        <option value="Bíceps">Bíceps</option>
+                        <option value="Tríceps">Tríceps</option>
+                        <option value="Costas">Costas</option>
+                        <option value="Abdômen">Abdômen</option>
+                        <option value="Pernas">Pernas</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+
+                    <div id="outroTipo" style="display: none;">
+                        <label for="outroTipoInput">Digite o tipo de exercício:</label>
+                        <input type="text" id="outroTipoInput" placeholder="Digite o tipo" />
+                    </div>
+
+                    <button type="submit">Cadastrar</button>
+                </form>
+            </div>
+
+            <div id="successMessage" style="display: none;">
+                <p id="successText"></p>
+                <button id="cadastrarNovoBtn">Cadastrar Novo</button>
+                <button id="sairBtn" class="exit">Sair</button>
+            </div>
+
+            <div id="errorMessage"></div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

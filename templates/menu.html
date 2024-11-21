@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Menu - Administrador</title>
+</head>
+<body>
+    <div class="menu-container">
+        <header>
+            <h1>Sistema de Gerenciamento de Treino</h1>
+            <h2>Bem-vindo, Administrador</h2>
+        </header>
+        <main>
+            <ul class="menu-list">
+                <li><a href="/exercicios">Exercícios</a></li> <!-- Aponta para exercicios.html -->
+                <li><a href="/treinos">Treinos</a></li>
+                <li><a href="/alunos">Alunos</a></li>
+                <li><a href="/relatorios">Relatórios</a></li>
+                <li><a href="/administradores">Administradores</a></li>
+                <li><a href="/" class="exit">Sair</a></li> <!-- Volta para a página de login -->
+            </ul>
+            
+        </main>
+    </div>
+</body>
+</html>

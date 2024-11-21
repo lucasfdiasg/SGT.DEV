@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Exercícios</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Gerenciamento de Exercícios</h1>
+        </header>
+        <main>
+            <p>Bem-vindo à seção de Exercícios. Escolha uma opção:</p>
+            <ul class="menu-list">
+                <li><a href="/cadastrar-exercicio">Cadastrar Novo Exercício</a></li> <!-- Link para a página de cadastro -->
+                <li><a href="/listar-exercicios">Listar Exercícios</a></li>
+                <li><a href="/buscar-exercicio">Buscar Exercício</a></li>
+                <li><a href="/menu" class="exit">Voltar ao Menu</a></li>
+            </ul>
+        </main>
+    </div>
+</body>
+</html>
