@@ -278,3 +278,18 @@ button:hover {
         width: 90%;
     }
 }
+
+#voltarBtn {
+    background-color: #ff4500; /* Laranja vibrante */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#voltarBtn:hover {
+    background-color: #e13e00; /* Um tom mais escuro de laranja */
+}

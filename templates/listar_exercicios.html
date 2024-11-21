@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Listar Exercícios</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Lista de Exercícios Cadastrados</h1>
+        </header>
+        <main>
+            <div id="exercicios-lista">
+                <!-- Aqui serão listados os exercícios -->
+            </div>
+
+            <div id="errorMessage" style="display: none;">
+                <p id="errorText"></p>
+            </div>
+
+            <button id="voltarMenuBtn" class="exit">Voltar ao Menu</button>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const exerciciosLista = document.getElementById('exercicios-lista');
+            const errorMessage = document.getElementById('errorMessage');
+            const voltarMenuBtn = document.getElementById('voltarMenuBtn');
+
+            // Faz a requisição para o backend e busca a lista de exercícios
+            const response = await fetch('/api/listar-exercicios');
+            const result = await response.json();
+
+            if (result.success) {
+                // Cria uma lista para exibir os exercícios
+                const exercicios = result.exercicios;
+                if (exercicios.length > 0) {
+                    let htmlContent = '<ul>';
+                    exercicios.forEach(exercicio => {
+                        htmlContent += `<li><strong>${exercicio.nome}</strong> - Tipo: ${exercicio.tipo}</li>`;
+                    });
+                    htmlContent += '</ul>';
+                    exerciciosLista.innerHTML = htmlContent;
+                } else {
+                    exerciciosLista.innerHTML = '<p>Nenhum exercício cadastrado.</p>';
+                }
+            } else {
+                // Se não houver exercícios, exibe uma mensagem de erro
+                errorMessage.style.display = 'block';
+                document.getElementById('errorText').innerText = result.message || 'Erro ao carregar a lista de exercícios.';
+            }
+
+            // Ação do botão "Voltar ao Menu"
+            voltarMenuBtn.addEventListener('click', () => {
+                window.location.href = '/exercicios'; // Redireciona para a página de exercícios
+            });
+        });
+    </script>
+</body>
+</html>

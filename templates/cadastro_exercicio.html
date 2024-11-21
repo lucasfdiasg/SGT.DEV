@@ -19,34 +19,29 @@
                     <input type="text" id="nome" placeholder="Digite o nome do exercício" required>
 
                     <label for="tipo">Tipo de Exercício:</label>
-                    <select id="tipo" required>
-                        <option value="" disabled selected>Selecione o tipo</option>
-                        <option value="Peito">Peito</option>
-                        <option value="Ombro">Ombro</option>
-                        <option value="Bíceps">Bíceps</option>
-                        <option value="Tríceps">Tríceps</option>
-                        <option value="Costas">Costas</option>
-                        <option value="Abdômen">Abdômen</option>
-                        <option value="Pernas">Pernas</option>
-                        <option value="Outros">Outros</option>
-                    </select>
+                    <input type="text" id="tipo" placeholder="Digite o tipo do exercício" required>
 
-                    <div id="outroTipo" style="display: none;">
-                        <label for="outroTipoInput">Digite o tipo de exercício:</label>
-                        <input type="text" id="outroTipoInput" placeholder="Digite o tipo" />
-                    </div>
-
-                    <button type="submit">Cadastrar</button>
+                    <button type="submit">Cadastrar Novo Exercício</button>
                 </form>
             </div>
 
+            <!-- Mensagem de Sucesso -->
             <div id="successMessage" style="display: none;">
                 <p id="successText"></p>
-                <button id="cadastrarNovoBtn">Cadastrar Novo</button>
-                <button id="sairBtn" class="exit">Sair</button>
+                <button id="cadastrarNovoBtn">Cadastrar Novo Exercício</button>
+                <button id="voltarMenuBtn" class="exit">Voltar ao Menu</button>
             </div>
 
-            <div id="errorMessage"></div>
+            <!-- Mensagem de Erro -->
+            <div id="errorMessage" style="display: none;">
+                <p id="errorText"></p>
+                <button id="tentarNovamenteBtn">Tentar Novamente</button>
+            </div>
+
+            <!-- Botão Voltar para Exercícios -->
+            <div id="voltarBtnContainer" style="margin-top: 20px; text-align: center;">
+                <a href="/exercicios"><button id="voltarBtn" class="exit">Voltar para Exercícios</button></a>
+            </div>
         </main>
     </div>
 

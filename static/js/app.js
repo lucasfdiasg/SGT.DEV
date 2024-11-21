@@ -35,3 +35,56 @@ loginForm.addEventListener('submit', async (e) => {
         errorMessage.innerText = result.message || 'Credenciais inválidas.';
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const cadastroForm = document.getElementById('cadastroExercicioForm');
+    const successMessage = document.getElementById('successMessage');
+    const successText = document.getElementById('successText');
+    const cadastrarNovoBtn = document.getElementById('cadastrarNovoBtn');
+    const voltarMenuBtn = document.getElementById('voltarMenuBtn');
+    const errorMessage = document.getElementById('errorMessage');
+    const errorText = document.getElementById('errorText');
+    const voltarBtnContainer = document.getElementById('voltarBtnContainer');
+
+    // Lida com o envio do formulário
+    cadastroForm.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Impede o envio tradicional do formulário
+
+        const nome = document.getElementById('nome').value;
+        const tipo = document.getElementById('tipo').value;
+
+        if (!nome || !tipo) {
+            errorMessage.style.display = 'block';
+            errorText.innerText = 'Por favor, preencha todos os campos!';
+            return;
+        }
+
+        const exercicio = { nome: nome, tipo: tipo };
+
+        // Envia os dados para o servidor (API)
+        const response = await fetch('/api/cadastrar-exercicio', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(exercicio)
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            successMessage.style.display = 'block'; // Exibe a mensagem de sucesso
+            successText.innerText = result.message;
+
+            // Exibe o botão de cadastrar novo ou voltar ao menu
+            cadastrarNovoBtn.addEventListener('click', () => {
+                window.location.href = '/cadastrar-exercicio'; // Redireciona para cadastrar outro exercício
+            });
+
+            voltarMenuBtn.addEventListener('click', () => {
+                window.location.href = '/exercicios'; // Redireciona para a página de exercícios
+            });
+        } else {
+            errorMessage.style.display = 'block';
+            errorText.innerText = result.message || 'Erro ao cadastrar exercício.';
+        }
+    });
+});
