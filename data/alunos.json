@@ -89,5 +89,23 @@
         "peso": 565.0,
         "altura": 32.32,
         "objetivo": "For\u00e7a"
+    },
+    {
+        "matricula": 1010,
+        "nome": "Leilane Mara F D G",
+        "idade": 29,
+        "sexo": "feminino",
+        "peso": 71.0,
+        "altura": 0.0178,
+        "objetivo": "Hipertrofia"
+    },
+    {
+        "matricula": 1011,
+        "nome": "Leilane Mara",
+        "idade": 29,
+        "sexo": "feminino",
+        "peso": 68.0,
+        "altura": 1.78,
+        "objetivo": "For\u00e7a"
     }
 ]

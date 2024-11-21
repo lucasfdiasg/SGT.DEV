@@ -43,6 +43,138 @@ def menu_admin_treino():
     except ValueError:
         print("Entrada inválida! Por favor, insira um número.")
 
+def listar_modelos():
+    clear()
+    cabecalho_treino()
+    print('''\
+===          Modelos de Treino         ===
+==========================================''')
+    try:
+        with open('data/modelos.json', 'r', encoding='utf8') as arq:
+            modelos = json.load(arq)
+            if not modelos:
+                input("\nNenhum modelo cadastrado...\n\
+Pressione enter para continuar...")
+            else:
+                for i, modelo in enumerate(modelos, 1):
+                    print(f'\n\
+{i}. {modelo['nome']}')
+    except FileNotFoundError:
+        print('''\
+==        Nenhum Treino Cadastrado!     ==''')
+    except json.JSONDecodeError:
+        print('''\
+==         Erro ao carregar dados!      ==''')  
+    input('''\
+==                                      ==
+==      Pressione Enter retornar        ==
+==         ao menu anterior             ==
+==========================================''')
+    clear()
+    menu_treino_modelo()
+
+def buscar_treino():
+    clear()
+    cabecalho_treino()
+    print('''\
+===          Busca de Treinos          ===
+==========================================''')
+    nome_treino = input('''\
+==        Digite o nome do treino       ==
+==     ou 'Enter' para listar todos     ==
+==========================================
+
+>>>>    ''').strip().lower()
+
+    try:
+        with open('data/modelos.json', 'r', encoding='utf8') as arq:
+            modelos = json.load(arq)
+
+            resultados = [(i, mod) for i, mod in enumerate(modelos) \
+                           if nome_treino in mod['nome'].lower()]
+            if resultados:
+                clear()
+                cabecalho_treino()
+                print('''\
+===         Resultado da Busca         ===
+==========================================''')
+                for idx, treino in resultados:
+                    print(f'''\
+ ID: {idx}. {treino['nome']}''')
+                    
+                index_selecionado = input('''
+>>>   Selecione o treino digitando seu ID
+            ou 'x' para retornar ao menu   ''')
+                if index_selecionado.lower() == 'x':
+                    menu_admin_treino()
+                try:
+                    index_selecionado = int(index_selecionado)
+                    if index_selecionado in [idx for idx, _ in resultados]:
+                        modelo_selecionado = modelos[index_selecionado]
+                        clear()
+                        cabecalho_treino()
+                        print(f'''\
+===         Resultado da Busca         ===
+==========================================
+=== Treino selecionado:                 ==
+
+>>>  {modelo_selecionado['nome']}
+''')
+                        print("\
+==  1. Remover este treino              ==\n\
+==  9. Sair                             ==\n\
+==========================================")
+                        escolha = input("\n>>> Selecione uma opção acima: ")
+                        if escolha == '1':
+                            remover_treino(index_selecionado, modelos)
+                        else:
+                            input('\n Saindo da busca...')
+                    else:
+                        input("Índice inválido.\n\
+Pressione Enter para tentar novamente.")
+                        buscar_treino()
+                except ValueError:
+                    input("\
+Entrada inválida!\n\
+Por favor, refaça a busca!")
+                    buscar_treino()
+                else:
+                    input("    Nenhum treino encontrado\n\
+    com o termo informado.\n\n\
+\
+    >>> Refaça a busca... ")
+                    buscar_treino()
+
+    except FileNotFoundError:
+        input("Nenhum treino cadastrado.")
+    except json.JSONDecodeError:
+        input("Erro ao carregar dados.")
+    menu_admin_treino()
+
+def remover_treino(indice, modelos):
+    clear()
+    cabecalho_treino()
+    print(f"\
+===        Remover Exercício           ===\n\
+==========================================\n\
+===   Tem certeza que deseja remover   ===\n\
+===       o treino selecionado???      ===\n\
+==========================================\n\
+===          [1] Sim     [2] Não       ===\n\
+==========================================")
+    confirmacao = input(">>>>   ").strip().lower()
+    
+    if confirmacao == '1':
+        modelos.pop(indice)
+        with open('data/modelos.json', 'w', encoding='utf8') as arq:
+            json.dump(modelos, arq, indent=4)
+        input("\n\
+      Exercício removido com sucesso!\n\
+>>>   Pressione Enter para continuar...")
+    else:
+        input("    Remoção cancelada.\n\
+    Pressione Enter para continuar...")
+        
 
 def menu_treino_modelo():
     clear()
@@ -51,7 +183,8 @@ def menu_treino_modelo():
 ===         Modelo de Treino           ===
 ==========================================
 == [1] Criar modelo de Treino           ==
-== [2] Treino de Alunos                 ==
+== [2] Listar Modelos de Treino         ==
+== [3] Buscar Treino                    ==
 == [9] Voltar                           ==
 ==========================================''')
     try:
@@ -60,7 +193,9 @@ def menu_treino_modelo():
         if opcao == '1':
             criar_modelo_treino()
         elif opcao == '2':
-            treino_de_alunos()
+            listar_modelos()
+        elif opcao == '3':
+            buscar_treino()
         elif opcao == '9':
             menu_admin_treino()
         else:
@@ -100,8 +235,8 @@ Pressione Enter para tentar novamente...")
     nome_do_treino_normalizado = nome_do_treino.lower()
 
     try:
-        if os.path.exists('data/treinos.json'):
-            with open('data/treinos.json', 'r+', encoding='utf8') as arq:
+        if os.path.exists('data/modelos.json'):
+            with open('data/modelos.json', 'r+', encoding='utf8') as arq:
                 try:
                     treinos = json.load(arq)
                 except json.JSONDecodeError:
@@ -158,7 +293,7 @@ Pressione Enter para tentar novamente...''')
 
         # Salvar treino no arquivo
         treinos.append(novo_treino)
-        with open('data/treinos.json', 'w', encoding='utf8') as arq:
+        with open('data/modelos.json', 'w', encoding='utf8') as arq:
             json.dump(treinos, arq, indent=4)
 
         input(f"Treino '{nome_do_treino}' salvo com sucesso!\n\nPressione Enter para continuar....")

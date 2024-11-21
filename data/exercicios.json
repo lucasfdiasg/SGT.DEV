@@ -26,5 +26,41 @@
     {
         "nome": "exercicio",
         "tipo": "tipo de exercicio"
+    },
+    {
+        "nome": "N\u00e3o sei",
+        "tipo": "Por Nome"
+    },
+    {
+        "nome": "Prancha",
+        "tipo": "Core"
+    },
+    {
+        "nome": "9",
+        "tipo": "9"
+    },
+    {
+        "nome": "ss",
+        "tipo": "ss"
+    },
+    {
+        "nome": "Nome",
+        "tipo": "as,"
+    },
+    {
+        "nome": "Nome de Exerc",
+        "tipo": ""
+    },
+    {
+        "nome": "",
+        "tipo": "a"
+    },
+    {
+        "nome": "New Ex",
+        "tipo": "Type"
+    },
+    {
+        "nome": "QQr",
+        "tipo": "Um"
     }
 ]

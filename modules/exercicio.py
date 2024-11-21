@@ -15,27 +15,28 @@ def cabecalho_exercicios():
 ==========================================''')
 
 def exercicios_menu():
-    clear()
-    cabecalho_exercicios()
-    print('''\
+    while True:
+        clear()
+        cabecalho_exercicios()
+        print('''\
 ==  1. Cadastrar Exercício              ==
 ==  2. Listar Exercícios                ==
 ==  3. Buscar Exercício                 ==
 ==  9. Voltar                           ==
 ==========================================''')
-    try:
-        opcao = input("\n>>>   Escolha uma opção: ")
-        if opcao == '1':
-            cadastrar_exercicio()
-        elif opcao == '2':
-            listar_exercicios()
-        elif opcao == '3':
-            buscar_exercicio()
-        elif opcao == '9':
-            return
-        else:
-            clear()
-            input('''
+        try:
+            opcao = input("\n>>>   Escolha uma opção: ")
+            if opcao == '1':
+                cadastrar_exercicio()
+            elif opcao == '2':
+                listar_exercicios()
+            elif opcao == '3':
+                buscar_exercicio()
+            elif opcao == '9':
+                return 
+            else:
+                clear()
+                input('''
 ==========================================
 === Sistema de Gerenciamento de Treino ===
 ==========================================
@@ -47,9 +48,9 @@ def exercicios_menu():
 ===     Pressione Enter retornar       ===
 ===        ao menu anterior...         ===
 ==========================================''')
-            exercicios_menu()
-    except ValueError:
-        print("Entrada inválida! Por favor, insira um número.")
+                exercicios_menu()
+        except ValueError:
+            print("Entrada inválida! Por favor, insira um número.")
 
 
 
@@ -60,8 +61,11 @@ def cadastrar_exercicio():
 ===       Cadastro de Exercícios       ===
 ==========================================''')
     nome_exercicio = input("==  Digite o nome do exercício:         ==\n\n>>>>    ").strip()
+    if not nome_exercicio:
+        cadastrar_exercicio()
     tipo_exercicio = input("\n==  Digite o tipo do exercício:         ==\n\n>>>>    ").strip()
-
+    if not tipo_exercicio:
+        cadastrar_exercicio()
 
     nome_exercicio_normalizado = nome_exercicio.lower()
 
@@ -173,7 +177,8 @@ def buscar_exercicio():
         with open('data/exercicios.json', 'r+', encoding='utf-8') as arq:
             exercicios = json.load(arq)
             
-            resultados = [(i, ex) for i, ex in enumerate(exercicios) if nome_exercicio in ex['nome'].lower()]
+            resultados = [(i, ex) for i, ex in enumerate(exercicios)\
+                          if nome_exercicio in ex['nome'].lower()]
             
             if resultados:
                 clear()
@@ -208,15 +213,16 @@ ID: {idx}. {exercicio['nome']}, Tipo: {exercicio['tipo']}''')
 ==  2. Remover este exercício           ==\n\
 ==  3. Sair                             ==\n\
 ==========================================")
-                        escolha = input(">>> Selecione uma opção acima:")
+                        escolha = input("\n>>> Selecione uma opção acima: ")
                         if escolha == '1':
                             atualizar_exercicio(index_selecionado, exercicios)
                         elif escolha == '2':
                             remover_exercicio(index_selecionado, exercicios)
                         else:
-                            input("Saindo da busca...")
+                            input("\nSaindo da busca...")
                     else:
-                        input("Índice inválido. Pressione Enter para tentar novamente.")
+                        input("Índice inválido.\n\
+Pressione Enter para tentar novamente.")
                         buscar_exercicio()
                 except ValueError:
                     input("\
@@ -243,8 +249,8 @@ def atualizar_exercicio(indice, exercicios):
 ===         Atualizar Exercício        ===
 ==========================================''')
     
-    novo_nome = input("\n>>>>  Novo nome ou Enter para manter): \n\n>>>>    ").strip()
-    novo_tipo = input("\n>>>>  Novo tipo (ou Enter para manter): \n\n>>>>    ").strip()
+    novo_nome = input("\n>>>>  Novo nome ou Enter para manter: \n\n>>>>    ").strip()
+    novo_tipo = input("\n>>>>  Novo tipo ou Enter para manter: \n\n>>>>    ").strip()
 
     if novo_nome:
         exercicios[indice]['nome'] = novo_nome
@@ -253,7 +259,8 @@ def atualizar_exercicio(indice, exercicios):
 
     with open('data/exercicios.json', 'w', encoding='utf-8') as arq:
         json.dump(exercicios, arq, indent=4)
-    print("        Exercício atualizado com sucesso!\n")
+    print("\n\
+        Exercício atualizado com sucesso!\n")
     input(">>> Pressione Enter para retornar ao menu...")
     exercicios_menu()
 
