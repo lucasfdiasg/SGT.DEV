@@ -38,5 +38,22 @@
                 "repeticoes": "10-12"
             }
         ]
+    },
+    {
+        "nome": "Peito 2",
+        "exercicios": [
+            {
+                "nome": "Supino Reto",
+                "tipo": "Peito",
+                "series": 3,
+                "repeticoes": "12-15"
+            },
+            {
+                "nome": "Flex\u00e3o de Bra\u00e7o",
+                "tipo": "Calistenia",
+                "series": 4,
+                "repeticoes": "13"
+            }
+        ]
     }
 ]

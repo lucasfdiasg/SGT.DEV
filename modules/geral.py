@@ -65,10 +65,12 @@ def menu_login():
     return tipo_usuario, usuario, senha
 
 def verificar_login(tipo_usuario, usuario, senha): 
-    if tipo_usuario == '1':
-        arquivo = 'data/alunos.csv'
-    else:
+    if tipo_usuario == '3':
         arquivo = 'data/administrador.csv'
+    else:
+        input("Funcionalidade em desenvolvimento.\n\
+Pressione Enter para voltar...")
+        return
 
     try:
         with open(arquivo, mode='r', encoding='utf8') as arq:
@@ -94,8 +96,7 @@ def menu_admin():
 ==  1. Exercícios                       ==
 ==  2. Treinos                          ==
 ==  3. Alunos                           ==
-==  4. Relatórios                       ==
-==  5. Administradores                  ==
+==  4. Configurações Administrativas    ==
 ==  9. Sair                             ==
 ==========================================''')
 
@@ -109,7 +110,7 @@ def menu_admin():
     elif opcao == '3':
         menu_admin_alunos()
         menu_admin()
-    elif opcao in ('4', '5'):
+    elif opcao in ('4'):
         input("Funcionalidade em desenvolvimento. Pressione Enter para voltar.")
         menu_admin()
     elif opcao == '9':
@@ -622,7 +623,8 @@ def menu_treino_modelo():
         print("Entrada inválida! Por favor, insira um número.")
 
 def menu_treino_alunos():
-    pass
+    input("Funcionalidade em desenvolvimento. Pressione Enter para voltar.")
+    return
 
 def cabeçalho_criar_modelo_treino():
     clear()
@@ -1204,6 +1206,5 @@ def menu_admin_alunos():
             menu_admin_alunos()
     except ValueError:
         input("Entrada inválida! Por favor, insira um número.")
-
 
 #v.21/11/2024
